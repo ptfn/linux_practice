@@ -1,0 +1,471 @@
+1
+
+ssh-keygen
+
+eltex-pg1-v18@eltex-2026-spring:~$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/eltex-pg1-v18/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/eltex-pg1-v18/.ssh/id_rsa
+Your public key has been saved in /home/eltex-pg1-v18/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:my+dOconGb6L2WiOJPiv+ZrmPN7aBpC9wxvbWQTGrIw eltex-pg1-v18@eltex-2026-spring
+The key's randomart image is:
++---[RSA 3072]----+
+|   o             |
+|    =            |
+| = o .           |
+|E +   .          |
+| o . .  S        |
+| .*   . .o       |
+|. .B.o .o+ o     |
+| o=B+..*=.*      |
+| +@O*o= *B..     |
++----[SHA256]-----+
+
+2
+
+ssh-copy-id root@172.16.9.192
+
+eltex-pg1-v18@eltex-2026-spring:~$ ssh-copy-id root@172.16.9.192
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/eltex-pg1-v18/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@172.16.9.192's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'root@172.16.9.192'"
+and check to make sure that only the key(s) you wanted were added.
+
+3
+
+ssh root@172.16.9.192
+cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/authorized_keys
+ls -l ~/.ssh/id_rsa.pub
+ls -l ~/.ssh/authorized_keys
+
+eltex-pg1-v18@eltex-2026-spring:~$ ssh root@172.16.9.192
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-55-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu Mar 12 12:42:12 PM UTC 2026
+
+  System load:  0.06               Processes:              113
+  Usage of /:   37.8% of 14.66GB   Users logged in:        1
+  Memory usage: 5%                 IPv4 address for ens18: 172.16.9.192
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Thu Mar 12 12:15:46 2026 from 172.16.8.4
+
+eltex-pg1-v18@eltex-2026-spring:~$ cat .ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCgHBitnE1XdyKft8dnPXgbE3Tf8kBKoiy82uu1n+sF7Gmai3iYp6j/BVCr9J/Cj7MvIYH8RSDD/KTH/fcxtZDd2TZs7sCnnfCGvaMRsG1vwTYcoMFkcM4wwWN3ebBFTn9RjWYef/L5jypmtRaQHBDxdjVyjDhagd562O9M5yLG168vjoL84SPCVYHYITDKj1mlk/5sXdxVHuihdbqsC2Ye4hKJgDeMQiIiYBIExZcSuhQbqy51P2oFO/l3OWxOxrkZA7otIZR8/OUU0PBmFePEHY7vcR6mhIGWyAF7KONzxCH6Jy8Y1PWMwhN8xeVjukbocKNWtNfOIU1+aS5TK0FbVnxtu/fMrJBTJMVQZyZ7tKES4+XGxn9uv8a4flk8FKcMsjiJLpJHwtVhyDO/2+aWDTGcrOgcgm9f/hX4Ha8Chv1/jrnJpfuUGJ1dZFXjxQDVFBoAjmaEdNfk4PSq6iqwqvelaMHK3n75T3k/YU+jBTVmZwDUbnm4aODFinu7U0E= eltex-pg1-v18@eltex-2026-spring
+
+root@eltex-practice2-pg1-v18:~# cat .ssh/authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCgHBitnE1XdyKft8dnPXgbE3Tf8kBKoiy82uu1n+sF7Gmai3iYp6j/BVCr9J/Cj7MvIYH8RSDD/KTH/fcxtZDd2TZs7sCnnfCGvaMRsG1vwTYcoMFkcM4wwWN3ebBFTn9RjWYef/L5jypmtRaQHBDxdjVyjDhagd562O9M5yLG168vjoL84SPCVYHYITDKj1mlk/5sXdxVHuihdbqsC2Ye4hKJgDeMQiIiYBIExZcSuhQbqy51P2oFO/l3OWxOxrkZA7otIZR8/OUU0PBmFePEHY7vcR6mhIGWyAF7KONzxCH6Jy8Y1PWMwhN8xeVjukbocKNWtNfOIU1+aS5TK0FbVnxtu/fMrJBTJMVQZyZ7tKES4+XGxn9uv8a4flk8FKcMsjiJLpJHwtVhyDO/2+aWDTGcrOgcgm9f/hX4Ha8Chv1/jrnJpfuUGJ1dZFXjxQDVFBoAjmaEdNfk4PSq6iqwqvelaMHK3n75T3k/YU+jBTVmZwDUbnm4aODFinu7U0E= eltex-pg1-v18@eltex-2026-spring
+
+eltex-pg1-v18@eltex-2026-spring:~$ ls -l .ssh/id_rsa.pub
+-rw-r--r-- 1 eltex-pg1-v18 eltex-pg1-v18 585 Mar 12 19:40 .ssh/id_rsa.pub
+
+root@eltex-practice2-pg1-v18:~# ls -l .ssh/authorized_keys
+-rw------- 1 root root 585 Mar 12 12:42 .ssh/authorized_keys
+
+4
+
+useradd -m -s /bin/bash user1
+passwd user1
+
+root@eltex-practice2-pg1-v18:~# useradd -m -s /bin/bash user1
+root@eltex-practice2-pg1-v18:~# passwd user1
+New password:
+Retype new password:
+passwd: password updated successfully
+
+5
+
+adduser user2
+adduser user3
+
+root@eltex-practice2-pg1-v18:~# adduser user2
+info: Adding user `user2' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `user2' (1002) ...
+info: Adding new user `user2' (1002) with group `user2 (1002)' ...
+info: Creating home directory `/home/user2' ...
+info: Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for user2
+Enter the new value, or press ENTER for the default
+        Full Name []: user2
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+info: Adding new user `user2' to supplemental / extra groups `users' ...
+info: Adding user `user2' to group `users' ...
+root@eltex-practice2-pg1-v18:~# adduser user3
+info: Adding user `user3' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `user3' (1003) ...
+info: Adding new user `user3' (1003) with group `user3 (1003)' ...
+info: Creating home directory `/home/user3' ...
+info: Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for user3
+Enter the new value, or press ENTER for the default
+        Full Name []: user3
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n]
+info: Adding new user `user3' to supplemental / extra groups `users' ...
+info: Adding user `user3' to group `users' ...
+
+6
+
+usermod -s /usr/sbin/nologin user3
+su user3
+su -s /bin/bash user3
+exit
+
+root@eltex-practice2-pg1-v18:~# usermod -s /usr/sbin/nologin user3
+root@eltex-practice2-pg1-v18:~# su user3
+This account is currently not available.
+root@eltex-practice2-pg1-v18:~# su -s /bin/bash user3
+user3@eltex-practice2-pg1-v18:/root$ logout
+bash: logout: not login shell: use `exit'
+user3@eltex-practice2-pg1-v18:/root$ exit
+exit
+root@eltex-practice2-pg1-v18:~#
+
+7
+
+groupadd common_group
+usermod -aG common_group user1
+usermod -aG common_group user2
+usermod -aG common_group user3
+grep common_group /etc/group
+grep user /etc/group
+
+
+root@eltex-practice2-pg1-v18:~# groupadd common_group
+root@eltex-practice2-pg1-v18:~# usermod -aG common_group user1
+root@eltex-practice2-pg1-v18:~# usermod -aG common_group user2
+root@eltex-practice2-pg1-v18:~# usermod -aG common_group user3
+root@eltex-practice2-pg1-v18:~# grep common_group /etc/group
+common_group:x:1004:user1,user2,user3
+root@eltex-practice2-pg1-v18:~# grep user /etc/group
+users:x:100:user2,user3
+user1:x:1001:
+user2:x:1002:
+user3:x:1003:
+common_group:x:1004:user1,user2,user3
+
+9
+
+chown :common_group /opt/share
+chmod g+s /opt/share
+chmod g+rwx /opt/share
+
+root@eltex-practice2-pg1-v18:~# chown :common_group /opt/share/
+root@eltex-practice2-pg1-v18:~# ls -l /opt
+total 4
+drwxr-xr-x 2 root common_group 4096 Mar 12 13:25 share
+root@eltex-practice2-pg1-v18:~# chmod g+s /opt/share/
+root@eltex-practice2-pg1-v18:~# ls -l /opt/
+total 4
+drwxr-sr-x 2 root common_group 4096 Mar 12 13:25 share
+root@eltex-practice2-pg1-v18:~# chmod g+rwx /opt/share/
+root@eltex-practice2-pg1-v18:~# ls -l /opt/
+total 4
+drwxrwsr-x 2 root common_group 4096 Mar 12 13:25 share
+
+10
+
+echo "umask 0027" >> /home/user1/.bashrc
+
+root@eltex-practice2-pg1-v18:~# echo "umask 0027" >> /home/user1/.bashrc
+
+11
+
+su - user1
+touch /opt/share/file1
+exit
+su - user2
+touch /opt/share/file2
+exit
+su - user3 -s /bin/bash
+touch /opt/share/file3
+exit
+su - user1
+rm /opt/share/file2
+rm /opt/share/file3
+ls /opt/share/
+
+
+root@eltex-practice2-pg1-v18:~# su - user1
+user1@eltex-practice2-pg1-v18:~$ touch /opt/share/file1
+user1@eltex-practice2-pg1-v18:~$ exit
+logout
+root@eltex-practice2-pg1-v18:~# su - user2
+user2@eltex-practice2-pg1-v18:~$ touch /opt/share/file2
+user2@eltex-practice2-pg1-v18:~$ exit
+logout
+root@eltex-practice2-pg1-v18:~# su - user3 -s /bin/bash
+user3@eltex-practice2-pg1-v18:~$ touch /opt/share/file3
+user3@eltex-practice2-pg1-v18:~$ exit
+logout
+root@eltex-practice2-pg1-v18:~# su - user1
+user1@eltex-practice2-pg1-v18:~$ rm /opt/share/file2
+user1@eltex-practice2-pg1-v18:~$ rm /opt/share/file3
+user1@eltex-practice2-pg1-v18:~$ ls /opt/share/
+file1
+root@eltex-practice2-pg1-v18:~# su - user2
+user2@eltex-practice2-pg1-v18:~$ touch /opt/share/file2
+user2@eltex-practice2-pg1-v18:~$ ls -l
+total 0
+user2@eltex-practice2-pg1-v18:~$ ls -l /opt/share/
+total 0
+-rw-r----- 1 user1 common_group 0 Mar 16 14:44 file1
+-rw-rw-r-- 1 user2 common_group 0 Mar 16 14:49 file2
+user2@eltex-practice2-pg1-v18:~$ rm /opt/share/file1
+rm: remove write-protected regular empty file '/opt/share/file1'? yes
+user2@eltex-practice2-pg1-v18:~$
+
+12
+
+chmod +t /opt/share
+su - user1
+rm /opt/share/file2
+
+root@eltex-practice2-pg1-v18:~# chmod +t /opt/share
+root@eltex-practice2-pg1-v18:~# su - user1
+user1@eltex-practice2-pg1-v18:~$ rm /opt/share/file2
+rm: cannot remove '/opt/share/file2': Operation not permitted
+user1@eltex-practice2-pg1-v18:~$
+
+13
+
+echo "user1 ALL=(ALL) NOPASSWD: /bin/dmesg" >> /etc/sudoers.d/user1_dmesg
+su - user1
+sudo dmesg
+echo "/bin/dmesg" >> /usr/local/bin/show_dmesg.sh
+chmod 755 /usr/local/bin/show_dmesg.sh
+chown root:root /usr/local/bin/show_dmesg.sh
+chmod u+s /usr/local/bin/show_dmesg.sh
+./show_dmesg.sh
+
+
+root@eltex-practice2-pg1-v18:~# echo "user1 ALL=(ALL) NOPASSWD: /bin/dmesg" >> /etc/sudoers.d/user1_dmesg
+root@eltex-practice2-pg1-v18:~# su - user1
+user1@eltex-practice2-pg1-v18:~$ sudo dmesg
+...
+...
+[354193.973329] audit: type=1400 audit(1773658232.627:532): apparmor="DENIED" operation="mknod" class="file" profile="ubuntu_pro_esm_cache" name="/usr/lib/python3/dist-packages/uaclient/__pycache__/exceptions.cpython-312.pyc.129623916277296" pid=59080 comm="python3" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
+root@eltex-practice2-pg1-v18:~# echo "/bin/dmesg" >> /usr/local/bin/show_dmesg.sh
+root@eltex-practice2-pg1-v18:~# chmod 755 /usr/local/bin/show_dmesg.sh
+root@eltex-practice2-pg1-v18:~# chown root:root /usr/local/bin/show_dmesg.sh
+root@eltex-practice2-pg1-v18:~# chmod u+s /usr/local/bin/show_dmesg.sh
+user1@eltex-practice2-pg1-v18:~$ ./show_dmesg.sh
+Operation denied
+
+14
+
+chage -M 10 user1
+chage -M 10 user2
+chage -M 10 user3
+
+root@eltex-practice2-pg1-v18:~# chage -M 10 user1
+root@eltex-practice2-pg1-v18:~# chage -M 10 user2
+root@eltex-practice2-pg1-v18:~# chage -M 10 user3
+root@eltex-practice2-pg1-v18:~#
+
+15
+
+echo "Иконников Родион" >> /etc/motd
+
+root@eltex-practice2-pg1-v18:~# echo "Иконников Родион" >> /etc/motd
+root@eltex-practice2-pg1-v18:~# exit
+logout
+Connection to 172.16.9.192 closed.
+eltex-pg1-v18@eltex-2026-spring:~$ ssh root@172.16.9.192
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-55-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Mar 16 03:19:02 PM UTC 2026
+
+  System load:  0.16               Processes:              113
+  Usage of /:   41.3% of 14.66GB   Users logged in:        1
+  Memory usage: 11%                IPv4 address for ens18: 172.16.9.192
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+87 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+*** System restart required ***
+Иконников Родион
+Last login: Thu Mar 12 12:42:50 2026 from 172.16.8.4
+
+16
+
+rsync -av /etc/ /root/etc_backup
+
+root@eltex-practice2-pg1-v18:~# rsync -av /etc/ /root/etc_backup
+sent 2,451,443 bytes  received 19,414 bytes  1,647,238.00 bytes/sec
+total size is 2,366,965  speedup is 0.96
+root@eltex-practice2-pg1-v18:~#
+
+17
+
+tar -czf /root/etc_backup.tar.gz -C /root etc_backup
+tar -cjf /root/etc_backup.tar.bz2 -C /root etc_backup
+tar -cJf /root/etc_backup.tar.xz -C /root etc_backup
+7z a /root/etc_backup.7z /root/etc_backup
+
+
+root@eltex-practice2-pg1-v18:~# tar -czf /root/etc_backup.tar.gz -C /root etc_backup
+root@eltex-practice2-pg1-v18:~# tar -cjf /root/etc_backup.tar.bz2 -C /root etc_backup
+root@eltex-practice2-pg1-v18:~# tar -cJf /root/etc_backup.tar.xz -C /root etc_backup
+root@eltex-practice2-pg1-v18:~# 7z a /root/etc_backup.7z /root/etc_backup
+
+7-Zip 23.01 (x64) : Copyright (c) 1999-2023 Igor Pavlov : 2023-06-20
+ 64-bit locale=en_US.UTF-8 Threads:2 OPEN_MAX:1024
+
+Scanning the drive:
+
+WARNING: errno=2 : No such file or directory
+/root/etc_backup/os-release
+
+
+WARNING: errno=2 : No such file or directory
+/root/etc_backup/resolv.conf
+
+
+WARNING: errno=2 : No such file or directory
+/root/etc_backup/mtab
+
+244 folders, 1508 files, 38703020 bytes (37 MiB)
+
+Creating archive: /root/etc_backup.7z
+
+Add new data to archive: 244 folders, 1508 files, 38703020 bytes (37 MiB)
+
+
+Files read from disk: 1495
+Archive size: 4679576 bytes (4570 KiB)
+
+Scan WARNINGS for files and folders:
+
+/root/etc_backup/os-release : errno=2 : No such file or directory
+/root/etc_backup/resolv.conf : errno=2 : No such file or directory
+/root/etc_backup/mtab : errno=2 : No such file or directory
+----------------
+Scan WARNINGS: 3
+root@eltex-practice2-pg1-v18:~# ls -lh /root/etc_backup.tar.* /root/etc_backup.7z
+-rw-r--r-- 1 root root 4.5M Mar 16 16:45 /root/etc_backup.7z
+-rw-r--r-- 1 root root 549K Mar 16 16:34 /root/etc_backup.tar.bz2
+-rw-r--r-- 1 root root 584K Mar 16 16:32 /root/etc_backup.tar.gz
+-rw-r--r-- 1 root root 471K Mar 16 16:35 /root/etc_backup.tar.xz
+
+18
+
+echo "Current date and time: $(date)" > /etc/motd
+rsync -av /etc/ /root/etc_backup/
+tar -czf /root/etc_backup_new.tar.gz -C /root etc_backup
+
+root@eltex-practice2-pg1-v18:~# echo "Current date and time: $(date)" > /etc/motd
+root@eltex-practice2-pg1-v18:~# rsync -av /etc/ /root/etc_backup/
+sending incremental file list
+motd
+
+sent 70,026 bytes  received 283 bytes  140,618.00 bytes/sec
+total size is 2,366,988  speedup is 33.67
+root@eltex-practice2-pg1-v18:~# tar -czf /root/etc_backup_new.tar.gz -C /root etc_backup
+
+19
+
+tar -df /root/etc_backup.tar.bz2 -C /root
+
+root@eltex-practice2-pg1-v18:~# tar -df /root/etc_backup.tar.bz2 -C /root
+etc_backup/motd: Mod time differs
+etc_backup/motd: Size differs
+
+20
+
+mkdir /root/etc_backup_gzip /root/etc_backup_7zip
+tar -xzf /root/etc_backup.tar.gz -C /root/etc_backup_gzip
+7z x /root/etc_backup.7z -o/root/etc_backup_7zip
+diff /root/etc_backup_gzip/etc_backup/motd /root/etc_backup_7zip/etc_backup/motd
+
+root@eltex-practice2-pg1-v18:~# mkdir /root/etc_backup_gzip /root/etc_backup_7zip
+root@eltex-practice2-pg1-v18:~# tar -xzf /root/etc_backup.tar.gz -C /root/etc_backup_gzip
+root@eltex-practice2-pg1-v18:~# 7z x /root/etc_backup.7z -o/root/etc_backup_7zip
+
+7-Zip 23.01 (x64) : Copyright (c) 1999-2023 Igor Pavlov : 2023-06-20
+ 64-bit locale=en_US.UTF-8 Threads:2 OPEN_MAX:1024
+
+Scanning the drive for archives:
+1 file, 4679576 bytes (4570 KiB)
+
+Extracting archive: /root/etc_backup.7z
+--
+Path = /root/etc_backup.7z
+Type = 7z
+Physical Size = 4679576
+Headers Size = 20866
+Method = LZMA2:24 BCJ
+Solid = +
+Blocks = 2
+
+Everything is Ok
+
+Folders: 244
+Files: 1508
+Size:       38703020
+Compressed: 4679576
+root@eltex-practice2-pg1-v18:~# diff /root/etc_backup_gzip/etc_backup/motd /root/etc_backup_7zip/etc_backup/motd
+1c1
+< Иконников Родион
+---
+> Current date and time: Mon Mar 16 04:38:37 PM UTC 2026

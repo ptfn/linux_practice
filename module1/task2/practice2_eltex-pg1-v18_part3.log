@@ -1,0 +1,198 @@
+2
+
+git config --global user.name "ptfn"
+git config --global user.name "CipherDogs@protonmail.com"
+git config --global init.defaultBranch main
+
+root@eltex-practice2-pg1-v18:~# git config --global user.name "ptfn"
+root@eltex-practice2-pg1-v18:~# git config --global user.name "CipherDogs@protonmail.com"
+root@eltex-practice2-pg1-v18:~# git config --global init.defaultBranch main
+
+3
+
+apt update
+apt install git gh
+
+4
+
+sh-keygen -t ed25519 -f ~/.ssh/github_eltex-pg1-v18
+
+5
+
+gh auth login
+
+6
+
+gh auth setup-git --hostname github.com
+
+root@eltex-practice2-pg1-v18:~# gh auth setup-git --hostname github.com
+
+7
+
+gh auth status
+
+root@eltex-practice2-pg1-v18:~# gh auth status
+github.com
+  ✓ Logged in to github.com account ptfn (/root/.config/gh/hosts.yml)
+  - Active account: true
+  - Git operations protocol: ssh
+  - Token: gho_************************************
+  - Token scopes: 'admin:public_key', 'gist', 'read:org', 'repo'
+root@eltex-practice2-pg1-v18:~#
+
+8
+
+gh repo create --public linux_practice
+
+root@eltex-practice2-pg1-v18:~# gh repo create --public linux_practice
+✓ Created repository ptfn/linux_practice on GitHub
+  https://github.com/ptfn/linux_practice
+root@eltex-practice2-pg1-v18:~#
+
+9
+
+root@eltex-practice2-pg1-v18:~# mkdir ~/linux_practice
+root@eltex-practice2-pg1-v18:~# cd ~/linux_practice/
+root@eltex-practice2-pg1-v18:~/linux_practice# echo "# краткое_описание_репозитория" >> README.md
+root@eltex-practice2-pg1-v18:~/linux_practice# git init
+Initialized empty Git repository in /root/linux_practice/.git/
+root@eltex-practice2-pg1-v18:~/linux_practice# git init
+Initialized empty Git repository in /root/linux_practice/.git/
+root@eltex-practice2-pg1-v18:~/linux_practice# git add README.md
+root@eltex-practice2-pg1-v18:~/linux_practice# git commit -m "first commit"
+[main (root-commit) c16d471] first commit
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+root@eltex-practice2-pg1-v18:~/linux_practice# git branch -M main
+root@eltex-practice2-pg1-v18:~/linux_practice# git remote add origin git@github.com:ptfn/linux_practice.git
+root@eltex-practice2-pg1-v18:~/linux_practice# git status
+On branch main
+nothing to commit, working tree clean
+eltex-pg1-v18@eltex-2026-spring:~$ scp -r *.log root@172.16.9.192:/root/linux_practice
+eltex-pg1-v18_part3_gt50M.log       100%  708    34.0KB/s   00:00
+eltex-pg1-v18_part3.log             100%  535   929.0KB/s   00:00
+eltex-pg1-v18_part.log              100%  552   127.6KB/s   00:00
+eltex-pg1-v18@eltex-2026-spring:~$
+root@eltex-practice2-pg1-v18:~/linux_practice# git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        module1/
+
+nothing added to commit but untracked files present (use "git add" to track)
+root@eltex-practice2-pg1-v18:~/linux_practice# git add module1/
+root@eltex-practice2-pg1-v18:~/linux_practice# git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   module1/eltex-pg1-v18_part.log
+        new file:   module1/eltex-pg1-v18_part3.log
+        new file:   module1/eltex-pg1-v18_part3_gt50M.log
+
+root@eltex-practice2-pg1-v18:~/linux_practice# git commit -m "added files"
+[main 865c60c] added files
+ 3 files changed, 57 insertions(+)
+ create mode 100644 module1/eltex-pg1-v18_part.log
+ create mode 100644 module1/eltex-pg1-v18_part3.log
+ create mode 100644 module1/eltex-pg1-v18_part3_gt50M.log
+root@eltex-practice2-pg1-v18:~/linux_practice# git push origin main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (6/6), 1.26 KiB | 1.26 MiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:ptfn/linux_practice.git
+   c16d471..865c60c  main -> main
+
+10
+
+root@eltex-practice2-pg1-v18:~# mkdir linux_practice_clone
+root@eltex-practice2-pg1-v18:~# cd linux_practice_clone/
+root@eltex-practice2-pg1-v18:~/linux_practice_clone#
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# git clone git@github.com:ptfn/linux_practice.git .
+Cloning into '.'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 9 (delta 0), reused 9 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (9/9), done.
+root@eltex-practice2-pg1-v18:~/linux_practice_clone#
+
+11
+
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# echo "новая строка" >> README.md
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# git add README.md
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# git commit "updated readme"
+error: pathspec 'updated readme' did not match any file(s) known to git
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# git commit -m "up
+dated readme"
+[main 5c9f294] updated readme
+ 1 file changed, 1 insertion(+)
+root@eltex-practice2-pg1-v18:~/linux_practice_clone# git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 345 bytes | 345.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:ptfn/linux_practice.git
+   865c60c..5c9f294  main -> main
+root@eltex-practice2-pg1-v18:~/linux_practice_clone#
+root@eltex-practice2-pg1-v18:~/linux_practice# git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 325 bytes | 325.00 KiB/s, done.
+From github.com:ptfn/linux_practice
+   865c60c..5c9f294  main       -> origin/main
+root@eltex-practice2-pg1-v18:~/linux_practice# git log origin/main
+commit 5c9f29442226620dd567c63b3dff7e6509f07396 (origin/main)
+Author: ptfn <CipherDogs@protonmail.com>
+Date:   Tue Mar 17 12:25:26 2026 +0000
+
+    updated readme
+
+commit 865c60c3a241582489e9f39b34ce42d9e4064e4c (HEAD -> main)
+Author: ptfn <CipherDogs@protonmail.com>
+Date:   Tue Mar 17 12:13:55 2026 +0000
+
+    added files
+
+commit c16d47197e4e3a9862eee19c0bf4699167a1ba47
+Author: ptfn <CipherDogs@protonmail.com>
+Date:   Tue Mar 17 10:47:57 2026 +0000
+
+    first commit
+root@eltex-practice2-pg1-v18:~/linux_practice#
+root@eltex-practice2-pg1-v18:~/linux_practice# git diff main origin/main
+diff --git a/README.md b/README.md
+index aadab5e..d638113 100644
+--- a/README.md
++++ b/README.md
+@@ -1 +1,2 @@
+ # краткое_описание_репозитория
++новая строка
+root@eltex-practice2-pg1-v18:~/linux_practice#
+From github.com:ptfn/linux_practice
+ * branch            main       -> FETCH_HEAD
+Updating 865c60c..5c9f294
+Fast-forward
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+root@eltex-practice2-pg1-v18:~/linux_practice#
+
+12
+
+
